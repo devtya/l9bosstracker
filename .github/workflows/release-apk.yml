@@ -1,0 +1,51 @@
+name: Build & Release APK
+
+# Jalan otomatis setiap kali tag baru di-push (contoh: v1.0.0, v1.2.3)
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write  # diperlukan agar workflow bisa membuat GitHub Release
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java (diperlukan untuk build Android)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      - name: Rename APK with version tag
+        run: |
+          mkdir -p release-output
+          cp build/app/outputs/flutter-apk/app-release.apk "release-output/L9-Boss-Tracker-${{ github.ref_name }}.apk"
+
+      - name: Create GitHub Release with APK
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-output/*.apk
+          name: "L9 Boss Tracker ${{ github.ref_name }}"
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
