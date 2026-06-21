@@ -1,6 +1,6 @@
 # L9 Boss Tracker
 
-Aplikasi Flutter Android untuk melacak waktu respawn world boss di **Lineage W** (server H3), dengan countdown timer live, progress bar per boss, filter berdasarkan guild, dan notifikasi lokal 5 menit sebelum boss respawn.
+Aplikasi Flutter Android untuk melacak waktu respawn world boss di **LordNine** (server H3), dengan countdown timer live, progress bar per boss, filter berdasarkan guild, dan notifikasi lokal 5 menit sebelum boss respawn.
 
 ## Fitur
 
