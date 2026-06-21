@@ -70,4 +70,4 @@ lib/
 
 ## Lisensi
 
-Project ini dibuat untuk keperluan pribadi/komunitas, tidak berafiliasi resmi dengan Lineage W atau pengembangnya.
+Project ini dibuat untuk keperluan pribadi/komunitas, tidak berafiliasi resmi dengan LordNine atau pengembangnya.
